@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="373.0" prefWidth="585.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rmate.employeemanager.controller.MainController">
+    <children>
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+      <TableView fx:id="employeeTable" layoutX="26.0" layoutY="54.0" prefHeight="298.0" prefWidth="543.0">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="75.0" text="Id" />
+          <TableColumn fx:id="nameColumn" prefWidth="224.0" text="Name" />
+            <TableColumn fx:id="emailColumn" minWidth="0.0" prefWidth="114.0" text="Email" />
+            <TableColumn fx:id="hireDateColumn" prefWidth="129.0" text="Hire Date" />
+        </columns>
+      </TableView>
+      <Button fx:id="addButton" layoutX="26.0" layoutY="14.0" mnemonicParsing="false" text="Add" />
+      <Button fx:id="editButton" layoutX="73.0" layoutY="14.0" mnemonicParsing="false" text="Edit" />
+      <Button fx:id="deleteButton" layoutX="118.0" layoutY="14.0" mnemonicParsing="false" text="Delete" />
+    </children>
+</AnchorPane>

@@ -5,7 +5,9 @@
  */
 package com.rmate.employeemanager.controller;
 
+import com.rmate.employeemanager.model.Department;
 import com.rmate.employeemanager.model.Employee;
+import com.rmate.employeemanager.service.DepartmentService;
 import com.rmate.employeemanager.service.EmployeeService;
 import java.net.URL;
 import java.time.LocalDate;
@@ -15,6 +17,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -45,6 +48,8 @@ public class MainController implements Initializable {
   private TableView<Employee> employeeTable;
   @FXML
   private TableColumn<Employee, LocalDate> hireDateColumn;
+  @FXML
+  private ChoiceBox<Department> departmentChoiceBox;
 
   /**
    * Initializes the controller class.
@@ -57,12 +62,21 @@ public class MainController implements Initializable {
     nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
     emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
     hireDateColumn.setCellValueFactory(new PropertyValueFactory<>("hireDate"));
+    
+    loadDepartmentChoiceBox();
+    
   }
 
   private void updateTable() {
     ObservableList<Employee> employeeList = FXCollections.observableArrayList(EmployeeService.getEmployees()); 
-    employeeTable.setItems(employeeList);
-    
+    employeeTable.setItems(employeeList);    
+  }
+  
+  private void loadDepartmentChoiceBox() {
+    ObservableList<Department> departments = FXCollections.observableArrayList(DepartmentService.getDepartments());
+    /*departmentChoiceBox = new ChoiceBox<>(departments);
+    departmentChoiceBox.getSelectionModel().select(0);*/
+    departmentChoiceBox.setItems(departments);
   }
   
 }

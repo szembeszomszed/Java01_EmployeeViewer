@@ -21,13 +21,17 @@ public class DepartmentService extends Service {
 
   public static List<Department> getDepartments() {
     List<Department> departments = new ArrayList<>();
-    String query = "SELECT "
-            + "       DEPARTMENT_ID, "
-            + "       DEPARTMENT_NAME"
-            + "     FROM "
-            + "       DEPARTMENTS"
-            + "     ORDER BY"
-            + "       DEPARTMENT_NAME ASC ";
+    
+  String query = "SELECT DISTINCT "
+          + "       D.DEPARTMENT_ID, "
+          + "       DEPARTMENT_NAME, "
+          + "       (SELECT COUNT(E2.EMPLOYEE_ID) FROM EMPLOYEES E2 WHERE E2.DEPARTMENT_ID = D.DEPARTMENT_ID) AS NUMBER_OF_EMPLOYEES"
+          + "     FROM "
+          + "       DEPARTMENTS D, EMPLOYEES E1"
+          + "     WHERE "
+          + "       D.DEPARTMENT_ID = E1.DEPARTMENT_ID"
+          + "     ORDER BY "
+          + "       DEPARTMENT_NAME";
 
     try {
       Class.forName(DRIVER);
@@ -40,6 +44,7 @@ public class DepartmentService extends Service {
 
         department.setDepartmentId(rs.getInt("DEPARTMENT_ID"));
         department.setDepartmentName(rs.getString("DEPARTMENT_NAME"));
+        department.setNumberOfEmployees(rs.getInt("NUMBER_OF_EMPLOYEES"));
 
         departments.add(department);
       }

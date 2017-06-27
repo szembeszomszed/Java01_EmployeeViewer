@@ -74,8 +74,6 @@ public class MainController implements Initializable {
   
   private void loadDepartmentChoiceBox() {
     ObservableList<Department> departments = FXCollections.observableArrayList(DepartmentService.getDepartments());
-    /*departmentChoiceBox = new ChoiceBox<>(departments);
-    departmentChoiceBox.getSelectionModel().select(0);*/
     departmentChoiceBox.setItems(departments);
   }
   
